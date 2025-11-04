@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bitcoin Price Action Visualizer</title>
+  <title>Bitcoin Price Action Visualizer — Navigable</title>
   <style>
     :root {
       --bg: #0f1115;
@@ -26,140 +26,30 @@
       padding: 16px 20px;
       border-bottom: 1px solid #1d212b;
       display: flex;
-      gap: 16px;
+      gap: 10px;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
     }
-    header h1 {
-      margin: 0;
-      font-size: 18px;
-      letter-spacing: 0.4px;
-      color: var(--text);
-      opacity: 0.95;
-    }
-    .wrap {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-    .card {
-      background: var(--panel);
-      border: 1px solid #1d212b;
-      border-radius: 14px;
-      padding: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    }
-    .row {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-    @media (min-width: 900px) {
-      .row {
-        grid-template-columns: 1fr 320px;
-        align-items: start;
-      }
-    }
-    .controls {
-      display: grid;
-      gap: 14px;
-    }
-    .controls .group {
-      background: #12151c;
-      border: 1px solid #1d212b;
-      border-radius: 12px;
-      padding: 12px;
-      display: grid;
-      gap: 10px;
-    }
-    .labelline {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: center;
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .range {
-      display: grid;
-      gap: 10px;
-    }
-    input[type="range"] {
-      width: 100%;
-      height: 4px;
-      border-radius: 999px;
-      background: #222633;
-      outline: none;
-      -webkit-appearance: none;
-    }
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 2px solid white;
-      cursor: pointer;
-      margin-top: -6px;
-    }
-    button, .btn {
-      background: #12151c;
-      color: var(--text);
-      border: 1px solid #222633;
-      padding: 10px 12px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-    }
-    button:hover, .btn:hover {
-      border-color: #2e3344;
-      transform: translateY(-1px);
-    }
-    .btnrow {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .legend {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      font-size: 13px;
-      color: var(--muted);
-      padding: 6px 0 0;
-    }
-    .dot {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      margin-right: 6px;
-    }
-    .status {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 8px;
-    }
-    canvas {
-      width: 100% !important;
-      height: 60vh !important;
-    }
-    footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 12px;
-      padding: 20px;
-    }
-    .note {
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .error { color: #ff8a80; }
+    header h1 { margin: 0; font-size: 18px; letter-spacing: .4px; opacity: .95; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 20px; display: grid; gap: 16px; }
+    .row { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width:900px){ .row{ grid-template-columns: 1fr 340px; } }
+    .card { background: var(--panel); border: 1px solid #1d212b; border-radius: 14px; padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+    .legend { display:flex; gap:14px; flex-wrap:wrap; font-size:13px; color:var(--muted); padding-top:6px; }
+    .dot { width:10px; height:10px; border-radius:50%; display:inline-block; margin-right:6px; }
+    .status { font-size:12px; color:var(--muted); margin-top:8px; }
+    .btnrow { display:flex; flex-wrap:wrap; gap:8px; }
+    button { background:#12151c; color:var(--text); border:1px solid #222633; padding:10px 12px; border-radius:10px; cursor:pointer; font-weight:600; font-size:14px; }
+    button:hover { border-color:#2e3344; transform: translateY(-1px); }
+    canvas { width:100% !important; height:60vh !important; }
+    .controls { display:grid; gap:14px; }
+    .group { background:#12151c; border:1px solid #1d212b; border-radius:12px; padding:12px; display:grid; gap:10px; }
+    .labelline { display:flex; justify-content:space-between; align-items:center; color:var(--muted); font-size:13px; }
+    input[type="range"] { width:100%; height:4px; border-radius:999px; background:#222633; outline:none; -webkit-appearance:none; }
+    input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; width:16px; height:16px; border-radius:50%; background:var(--accent); border:2px solid white; cursor:pointer; margin-top:-6px; }
+    footer { text-align:center; color:var(--muted); font-size:12px; padding:20px; }
+    kbd { background:#0b0d11; border:1px solid #2a2e3a; border-radius:6px; padding:2px 6px; font-size:12px; }
   </style>
 </head>
 <body>
@@ -167,6 +57,7 @@
     <h1>Bitcoin Price Action Visualizer</h1>
     <div class="btnrow">
       <button id="btn-reset">Reset Range</button>
+      <button id="btn-resetzoom">Reset Zoom</button>
       <button id="btn-scale">Toggle Log Scale</button>
       <button id="btn-save">Save PNG</button>
     </div>
@@ -180,50 +71,36 @@
           <span><span class="dot" style="background:#6aa9ff"></span>Close</span>
           <span><span class="dot" style="background:#ffb74d"></span>50-Day MA</span>
           <span><span class="dot" style="background:#66bb6a"></span>200-Day MA</span>
-          <span><span class="dot" style="background:#ab47bc"></span>RSI 14 (lower pane)</span>
-          <span><span class="dot" style="background:#4caf50"></span>Golden cross zones</span>
-          <span><span class="dot" style="background:#ef5350"></span>Death cross zones</span>
+          <span><span class="dot" style="background:#ab47bc"></span>RSI 14 (right axis)</span>
         </div>
         <div class="status" id="status">Loading daily data...</div>
       </div>
 
       <div class="card controls">
         <div class="group">
-          <div class="labelline">
-            <div>Start</div>
-            <div id="start-date">—</div>
-          </div>
-          <input id="range-start" class="range" type="range" min="0" max="100" value="0" step="1" />
+          <div class="labelline"><div>Start</div><div id="start-date">—</div></div>
+          <input id="range-start" type="range" min="0" max="100" value="0" step="1" />
         </div>
-
         <div class="group">
-          <div class="labelline">
-            <div>End</div>
-            <div id="end-date">—</div>
-          </div>
-          <input id="range-end" class="range" type="range" min="0" max="100" value="100" step="1" />
+          <div class="labelline"><div>End</div><div id="end-date">—</div></div>
+          <input id="range-end" type="range" min="0" max="100" value="100" step="1" />
         </div>
-
         <div class="group">
-          <div class="labelline">
-            <div>Notes</div>
-          </div>
-          <div class="note">
-            If nothing renders, your browser blocked the first data source. This file will automatically try a fallback provider.
+          <div class="labelline"><div>Navigation tips</div></div>
+          <div style="font-size:12px; color:#a6adbb">
+            Drag to zoom a window. Mouse wheel to zoom. Pinch on trackpad. Hold <kbd>Ctrl</kbd> and drag to pan. 
+            Use <kbd>←</kbd>/<kbd>→</kbd> to nudge the window, <kbd>+</kbd>/<kbd>-</kbd> to zoom in/out.
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <footer>
-    Built for GitHub Pages. No server needed.
-  </footer>
+  <footer>Built for GitHub Pages.</footer>
 
-  <!-- Chart.js and plugins -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.umd.min.js"></script>
   <script>
     // Utilities
     const toYMD = ts => {
@@ -233,6 +110,7 @@
       const d2 = String(d.getUTCDate()).padStart(2, "0");
       return `${y}-${m}-${d2}`;
     };
+    const clamp = (x, a, b) => Math.min(Math.max(x, a), b);
 
     function sma(values, period) {
       const out = Array(values.length).fill(null);
@@ -244,7 +122,6 @@
       }
       return out;
     }
-
     function rsi(values, period = 14) {
       const out = Array(values.length).fill(null);
       let gain = 0, loss = 0;
@@ -253,8 +130,7 @@
         const up = Math.max(delta, 0);
         const dn = Math.max(-delta, 0);
         if (i <= period) {
-          gain += up;
-          loss += dn;
+          gain += up; loss += dn;
           if (i === period) {
             const rs = loss === 0 ? 100 : gain / loss;
             out[i] = 100 - 100 / (1 + rs);
@@ -269,41 +145,11 @@
       return out;
     }
 
-    function findCrossZones(sma50, sma200) {
-      const zones = [];
-      const above = sma50.map((v, i) => v != null && sma200[i] != null ? v > sma200[i] : null);
-      let current = null;
-      for (let i = 1; i < above.length; i++) {
-        const prev = above[i - 1];
-        const now = above[i];
-        if (prev == null || now == null) continue;
-        if (prev !== now) {
-          if (current) {
-            current.endIndex = i;
-            zones.push(current);
-          }
-          current = {
-            startIndex: i - 1,
-            endIndex: null,
-            type: now ? 'golden' : 'death'
-          };
-        }
-      }
-      if (current) {
-        current.endIndex = above.length - 1;
-        zones.push(current);
-      }
-      return zones;
-    }
-
     // State
     let raw = null;
-    let state = {
-      idxStart: 0,
-      idxEnd: 0,
-      logScale: false
-    };
+    let state = { idxStart: 0, idxEnd: 0, logScale: false };
 
+    // Elements
     const elStart = document.getElementById("range-start");
     const elEnd = document.getElementById("range-end");
     const elStartDate = document.getElementById("start-date");
@@ -329,161 +175,97 @@
           y: { type: "linear", position: "left", grid: { color: getComputedStyle(document.documentElement).getPropertyValue("--grid") }, ticks: { color: "#c8cfdd" } },
           rsi: { type: "linear", position: "right", min: 0, max: 100, grid: { color: "rgba(171,71,188,0.15)" }, ticks: { color: "#d3b5df", maxTicksLimit: 5 } }
         },
-        plugins: { legend: { display: false }, tooltip: { mode: "index", intersect: false }, annotation: { annotations: {} } }
+        plugins: {
+          legend: { display: false },
+          tooltip: { mode: "index", intersect: false },
+          zoom: {
+            limits: { x: { minRange: 10 } },
+            pan: { enabled: true, modifierKey: "ctrl", mode: "x" },
+            zoom: {
+              wheel: { enabled: true },
+              drag: { enabled: true, backgroundColor: "rgba(106,169,255,0.15)", borderWidth: 1, borderColor: "rgba(106,169,255,0.5)" },
+              pinch: { enabled: true },
+              mode: "x"
+            }
+          }
+        }
       }
     });
 
-    function clampRange() {
-      const s = parseInt(elStart.value, 10);
-      const e = parseInt(elEnd.value, 10);
-      if (s > e) {
-        if (s === state.idxStart) { elStart.value = Math.min(e, raw.labels.length - 2); }
-        else { elEnd.value = Math.max(s, 1); }
-      }
-      state.idxStart = parseInt(elStart.value, 10);
-      state.idxEnd = parseInt(elEnd.value, 10);
-    }
-
     function updateRangeLabels() {
-      elStartDate.textContent = raw ? raw.labels[state.idxStart] : "—";
-      elEndDate.textContent = raw ? raw.labels[state.idxEnd] : "—";
-    }
-
-    function buildAnnotations(labels, zones) {
-      const annotations = {};
-      zones.forEach((z, i) => {
-        annotations[`zone-${i}`] = {
-          type: "box",
-          xMin: labels[z.startIndex],
-          xMax: labels[z.endIndex],
-          yMin: "chartAreaTop",
-          yMax: "chartAreaBottom",
-          backgroundColor: z.type === "golden" ? "rgba(76,175,80,0.06)" : "rgba(239,83,80,0.06)",
-          borderWidth: 0
-        };
-      });
-      return annotations;
-    }
-
-    function updateChart() {
       if (!raw) return;
-      clampRange();
-      updateRangeLabels();
+      elStartDate.textContent = raw.labels[state.idxStart];
+      elEndDate.textContent = raw.labels[state.idxEnd];
+    }
 
+    function applyRange() {
+      if (!raw) return;
       const { labels, close, ma50, ma200, rsi14 } = raw;
-      const s = state.idxStart;
-      const e = state.idxEnd;
-
-      const sl = labels.slice(s, e + 1);
-      chart.data.labels = sl;
+      const s = state.idxStart, e = state.idxEnd;
+      chart.data.labels = labels.slice(s, e + 1);
       chart.data.datasets[0].data = close.slice(s, e + 1);
       chart.data.datasets[1].data = ma50.slice(s, e + 1);
       chart.data.datasets[2].data = ma200.slice(s, e + 1);
       chart.data.datasets[3].data = rsi14.slice(s, e + 1);
-
-      const zones = findCrossZones(ma50.slice(s, e + 1), ma200.slice(s, e + 1));
-      chart.options.plugins.annotation.annotations = buildAnnotations(sl, zones);
-
       chart.options.scales.y.type = state.logScale ? "logarithmic" : "linear";
       chart.update();
+      updateRangeLabels();
     }
 
-    // Provider loaders
-    async function fetchWithTimeout(url, opts = {}, timeoutMs = 15000) {
-      const ctrl = new AbortController();
-      const to = setTimeout(() => ctrl.abort(), timeoutMs);
-      try {
-        const res = await fetch(url, { ...opts, signal: ctrl.signal });
-        return res;
-      } finally {
-        clearTimeout(to);
-      }
+    function setRange(s, e) {
+      s = clamp(s, 0, raw.labels.length - 2);
+      e = clamp(e, s + 1, raw.labels.length - 1);
+      state.idxStart = s;
+      state.idxEnd = e;
+      elStart.value = s;
+      elEnd.value = e;
+      applyRange();
     }
 
-    async function loadFromCoinGecko() {
-      // Many browsers now require an API key header for CoinGecko v3. We'll try demo header and gracefully fall back.
-      const url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=max";
-      const headers = { "accept": "application/json" };
-      // If you have a key, uncomment next line and replace DEMO_KEY:
-      // headers["x-cg-pro-api-key"] = "DEMO_KEY";
-      const res = await fetchWithTimeout(url, { headers });
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(`CoinGecko error ${res.status}: ${text.slice(0,200)}`);
+    function currentWindow() { return state.idxEnd - state.idxStart + 1; }
+
+    // Slider events
+    function clampSliders() {
+      let s = parseInt(elStart.value, 10);
+      let e = parseInt(elEnd.value, 10);
+      if (s >= e) {
+        if (s === state.idxStart) s = e - 1;
+        else e = s + 1;
       }
-      const json = await res.json();
-      const prices = json.prices;
-      return {
-        labels: prices.map(p => toYMD(p[0])),
-        close: prices.map(p => Number(p[1]))
-      };
+      setRange(s, e);
     }
+    elStart.addEventListener("input", clampSliders);
+    elEnd.addEventListener("input", clampSliders);
 
-    async function loadFromCryptoCompare() {
-      // No key required for historical daily, CORS-enabled
-      const url = "https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&allData=true";
-      const res = await fetchWithTimeout(url, { headers: { "accept": "application/json" }});
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(`CryptoCompare error ${res.status}: ${text.slice(0,200)}`);
+    // Keyboard navigation
+    window.addEventListener("keydown", (ev) => {
+      if (!raw) return;
+      const width = currentWindow();
+      const step = Math.max(1, Math.floor(width * 0.05)); // 5% nudge
+      if (ev.key === "ArrowRight") {
+        setRange(state.idxStart + step, state.idxEnd + step);
+      } else if (ev.key === "ArrowLeft") {
+        setRange(state.idxStart - step, state.idxEnd - step);
+      } else if (ev.key === "+" || ev.key === "=") { // zoom in
+        const shrink = Math.max(2, Math.floor(width * 0.1));
+        setRange(state.idxStart + shrink, state.idxEnd - shrink);
+      } else if (ev.key === "-" || ev.key === "_") { // zoom out
+        const grow = Math.max(2, Math.floor(width * 0.1));
+        setRange(state.idxStart - grow, state.idxEnd + grow);
       }
-      const json = await res.json();
-      if (json.Response !== "Success") {
-        throw new Error(`CryptoCompare bad response: ${json.Message || "Unknown"}`);
-      }
-      const data = json.Data.Data;
-      return {
-        labels: data.map(p => toYMD(p.time * 1000)),
-        close: data.map(p => Number(p.close))
-      };
-    }
+    });
 
-    async function load() {
-      try {
-        elStatus.textContent = "Fetching BTC daily candles (CoinGecko)...";
-        let series = null;
-        try {
-          series = await loadFromCoinGecko();
-        } catch (e1) {
-          console.warn(e1);
-          elStatus.innerHTML = "CoinGecko blocked or failed. Trying fallback provider...";
-          series = await loadFromCryptoCompare();
-        }
-
-        const labels = series.labels;
-        const close = series.close;
-        const ma50 = sma(close, 50);
-        const ma200 = sma(close, 200);
-        const rsi14 = rsi(close, 14);
-
-        raw = { labels, close, ma50, ma200, rsi14 };
-
-        // Init sliders
-        elStart.min = 0; elStart.max = labels.length - 1; elStart.value = 0;
-        elEnd.min = 0; elEnd.max = labels.length - 1; elEnd.value = labels.length - 1;
-        state.idxStart = 0; state.idxEnd = labels.length - 1;
-
-        updateRangeLabels();
-        updateChart();
-        elStatus.textContent = `Loaded ${labels.length} daily candles.`;
-      } catch (err) {
-        console.error(err);
-        elStatus.innerHTML = `<span class="error">Error loading data: ${err.message}. Open DevTools Console for details.</span>`;
-      }
-    }
-
-    // Events
-    elStart.addEventListener("input", updateChart);
-    elEnd.addEventListener("input", updateChart);
+    // Buttons
     document.getElementById("btn-reset").addEventListener("click", () => {
       if (!raw) return;
-      elStart.value = 0;
-      elEnd.value = raw.labels.length - 1;
-      updateChart();
+      setRange(0, raw.labels.length - 1);
+    });
+    document.getElementById("btn-resetzoom").addEventListener("click", () => {
+      chart.resetZoom();
     });
     document.getElementById("btn-scale").addEventListener("click", () => {
       state.logScale = !state.logScale;
-      updateChart();
+      applyRange();
       elStatus.textContent = state.logScale ? "Log scale enabled" : "Linear scale enabled";
     });
     document.getElementById("btn-save").addEventListener("click", () => {
@@ -492,6 +274,55 @@
       a.download = "bitcoin_price_chart.png";
       a.click();
     });
+
+    // Data loading with fallback
+    async function fetchWithTimeout(url, opts = {}, timeoutMs = 15000) {
+      const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), timeoutMs);
+      try { return await fetch(url, { ...opts, signal: ctrl.signal }); }
+      finally { clearTimeout(t); }
+    }
+    async function loadFromCG() {
+      const url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=max";
+      const res = await fetchWithTimeout(url, { headers: {"accept":"application/json"} });
+      if (!res.ok) throw new Error("CoinGecko HTTP " + res.status);
+      const j = await res.json();
+      return j.prices.map(p => [p[0], Number(p[1])]);
+    }
+    async function loadFromCC() {
+      const url = "https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&allData=true";
+      const res = await fetchWithTimeout(url, { headers: {"accept":"application/json"} });
+      if (!res.ok) throw new Error("CryptoCompare HTTP " + res.status);
+      const j = await res.json();
+      if (j.Response !== "Success") throw new Error("CryptoCompare: " + (j.Message || "Unknown"));
+      return j.Data.Data.map(p => [p.time*1000, Number(p.close)]);
+    }
+
+    async function load() {
+      try {
+        elStatus.textContent = "Fetching BTC daily candles (CoinGecko)...";
+        let rows;
+        try { rows = await loadFromCG(); }
+        catch (e) { console.warn(e); elStatus.textContent = "CoinGecko failed, trying fallback..."; rows = await loadFromCC(); }
+        const labels = rows.map(r => toYMD(r[0]));
+        const close = rows.map(r => r[1]);
+        raw = {
+          labels,
+          close,
+          ma50: sma(close, 50),
+          ma200: sma(close, 200),
+          rsi14: rsi(close, 14)
+        };
+        // init sliders
+        elStart.min = 0; elStart.max = labels.length - 1; elStart.value = 0;
+        elEnd.min = 0; elEnd.max = labels.length - 1; elEnd.value = labels.length - 1;
+        state.idxStart = 0; state.idxEnd = labels.length - 1;
+        applyRange();
+        elStatus.textContent = `Loaded ${labels.length} daily candles. Drag to zoom, Ctrl+drag to pan.`;
+      } catch (err) {
+        console.error(err);
+        elStatus.textContent = "Error loading data: " + err.message;
+      }
+    }
 
     load();
   </script>
